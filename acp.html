@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trigonometric Functions and Sum of Arguments</title>
+</head>
+
+<body>
+    <h2>Trigonometric Values and Sum of Arguments</h2>
+    <pre id="output"></pre>
+
+    <script>
+        // Convert degrees to radians
+        function degToRad(deg) {
+            return deg * (Math.PI / 180);
+        }
+
+        // Print trig values for a given angle
+        function printTrigValues(deg) {
+            let rad = degToRad(deg);
+            let result = `Angle: ${deg}°\n`;
+            result += `sin(${deg}) = ${Math.sin(rad).toFixed(4)}\n`;
+            result += `cos(${deg}) = ${Math.cos(rad).toFixed(4)}\n`;
+            result += `tan(${deg}) = ${Math.tan(rad).toFixed(4)}\n`;
+            result += "--------------------------------------\n";
+            return result;
+        }
+
+        // sin(A + B) using identity
+        function sinSum(A, B) {
+            return Math.sin(degToRad(A)) * Math.cos(degToRad(B)) +
+                Math.cos(degToRad(A)) * Math.sin(degToRad(B));
+        }
+
+        // cos(A + B) using identity
+        function cosSum(A, B) {
+            return Math.cos(degToRad(A)) * Math.cos(degToRad(B)) -
+                Math.sin(degToRad(A)) * Math.sin(degToRad(B));
+        }
+
+        // Main program
+        let output = "Trigonometric Values of Standard Angles:\n\n";
+        output += printTrigValues(30);
+        output += printTrigValues(45);
+        output += printTrigValues(60);
+        output += printTrigValues(90);
+
+        let A = 30, B = 45;
+        output += "\nUsing sum of arguments formulas:\n";
+        output += `sin(${A} + ${B}) = ${sinSum(A, B).toFixed(4)}\n`;
+        output += `cos(${A} + ${B}) = ${cosSum(A, B).toFixed(4)}\n`;
+
+        output += "\nDirect verification with Math library:\n";
+        output += `sin(${A + B}) = ${Math.sin(degToRad(A + B)).toFixed(4)}\n`;
+        output += `cos(${A + B}) = ${Math.cos(degToRad(A + B)).toFixed(4)}\n`;
+
+        // Print to browser
+        document.getElementById("output").textContent = output;
+    </script>
+</body>
+
+</html>
